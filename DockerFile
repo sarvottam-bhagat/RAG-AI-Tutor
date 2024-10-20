@@ -7,7 +7,6 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-COPY credentials.json /app/credentials.json
 
 # Install any needed packages from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -15,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose the port Streamlit runs on
 EXPOSE 8501
 
-ENV GOOGLE_APPLICATION_CREDENTIALS="/app/credentials.json"
+
 
 # Run the Streamlit app
 CMD ["streamlit", "run", "app.py"]
