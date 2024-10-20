@@ -1,0 +1,38 @@
+name: CI/CD for Streamlittt App
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout the repo
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+    
+    # Step 2: Set up Docker Buildx (optional for multi-arch builds)
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    # Step 3: Log in to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    # Step 4: Build and push the Docker image
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./DockerFile
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/sivi-app:latest
+
+    # Step 5: Deploy (optional, depending on where you host the app)
