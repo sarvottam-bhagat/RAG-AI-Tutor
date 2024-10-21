@@ -6,7 +6,7 @@
 
 ## Inspiration:
 
-The inspiration behind Study Buddy was to create an interactive, AI-powered tool that helps students study efficiently by providing personalized quiz generation and answering questions from uploaded study materials, like PDFs.The goal was to combine learning with engagement, offering an intelligent way to interact with content and get immediate feedback, which is especially useful in exam preparation or content review.It was motivated by the need to address the problem of passive learning by turning study materials into an active, dynamic process.
+The inspiration behind Sivi Ai Buddy was to create an interactive, AI-powered tool that helps students study efficiently by providing personalized quiz generation and answering questions from uploaded study materials, like PDFs.The goal was to combine learning with engagement, offering an intelligent way to interact with content and get immediate feedback, which is especially useful in exam preparation or content review.It was motivated by the need to address the problem of passive learning by turning study materials into an active, dynamic process.
 
 ## What It Does:
 
