@@ -28,24 +28,23 @@ st.set_page_config(
 )
 def get_conversational_chain():
     prompt_template = """
-    You are an AI English teacher. Your task is to generate engaging lessons on the chosen topic, with clear sections:
+    As an AI study assistant, your role is to thoroughly analyze the provided document and provide accurate, detailed answers to questions based on its content.
     
-    1. **Introduction**: Briefly introduce the topic to capture the student's attention in 200 words.
-    
-    2. **Key Concepts**: Explain the main ideas related to the topic, ensuring clarity and depth.
-    
-    3. **Examples**: Provide practical examples to illustrate the concepts in action.
-    
-    4. **Exercises**: Include a short quiz or activities to engage the student and check their understanding.
-    
-    5. **Conclusion**: Summarize the key points and suggest how the student can apply this knowledge in real-life scenarios.
+    Assume the role of a knowledgeable tutor who can explain complex topics in a clear, concise, and student-friendly manner.
 
-    Make sure to make the lesson as interactive and engaging as possible.\n\n
+    You should be able to:
+    1. **Understand the core concepts**: Identify and explain the key ideas, theories, formulas, or processes presented in the material.
+    2. **Provide relevant examples**: Offer specific examples from the document to illustrate the concepts being discussed.
+    3. **Clarify doubts**: Address any specific areas of confusion the student might have regarding the subject matter.
+    4. **Offer study tips**: Suggest effective strategies for understanding and memorizing the material, if applicable.
+    5. **Summarize sections**: Provide concise summaries of different parts of the document to aid in quick revision.
+
+    Make sure your answers are directly based on the information in the document and avoid assumptions or external information. Be as thorough as possible, aiming to enhance the student's understanding of the subject matter.\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
     Answer:
     """
-    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
+    model = ChatGoogleGenerativeAI(model="gemini-exp-1206", temperature=0.3)
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     return chain
@@ -351,6 +350,8 @@ def main():
         mode = st.radio("Choose mode:", ("PDF Analyzer", "Quiz Generator", "Screenshot Analyzer"))
         if st.button("Video Summarizer"):
             st.write("[Open Video Summarizer](http://localhost:8502)")
+        if st.button("Repo Chat"):
+            st.write("[Open Repo Chat](http://localhost:8080)")
         st.title("Upload PDF")
         pdf_docs = st.file_uploader("Drop your PDF files here", accept_multiple_files=True)
         process_button = st.button("Process PDF")
